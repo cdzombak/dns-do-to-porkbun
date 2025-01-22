@@ -17,8 +17,13 @@ func Migrate(ctx context.Context, doClient *godo.Client, pbClient *porkbun.Clien
 	fmt.Printf("Found %d records to copy from DigitalOcean\n", len(sourceRecords))
 
 	for _, sourceRecord := range sourceRecords {
-		if sourceRecord.Type == "NS" {
-			fmt.Printf("Skipping NS record: %s (%s)\n", sourceRecord.Name, sourceRecord.Data)
+		if sourceRecord.Type == "NS" || sourceRecord.Type == "SOA" {
+			fmt.Printf("Skipping %s record: %s (%s)\n", sourceRecord.Type, sourceRecord.Name, sourceRecord.Data)
+			continue
+		}
+
+		if sourceRecord.Type == "SRV" {
+			fmt.Printf("Skipping SRV record (not supported by this tool; patches are welcome): %s (%s)\n", sourceRecord.Name, sourceRecord.Data)
 			continue
 		}
 
@@ -28,16 +33,6 @@ func Migrate(ctx context.Context, doClient *godo.Client, pbClient *porkbun.Clien
 		}
 
 		fmt.Println("Copying:", sourceRecord.Type, sourceRecord.Name)
-
-		if sourceRecord.Port != 0 {
-			fmt.Printf("\twarning: port (%d) will be dropped\n", sourceRecord.Port)
-		}
-		if sourceRecord.Weight != 0 {
-			fmt.Printf("\twarning: weight (%d) will be dropped\n", sourceRecord.Weight)
-		}
-		if sourceRecord.Flags != 0 {
-			fmt.Printf("\twarning: flags (%d) will be dropped\n", sourceRecord.Flags)
-		}
 
 		newRec := doToPorkbun(sourceRecord)
 		if dryRun {
