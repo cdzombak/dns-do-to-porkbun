@@ -22,6 +22,10 @@ func doToPorkbun(doRec godo.DomainRecord) porkbun.Record {
 		retv.Content = doRec.Data
 	}
 
+	if doRec.Type == "CAA" {
+		retv.Content = fmt.Sprintf("%d %s \"%s\"", doRec.Flags, doRec.Tag, doRec.Data)
+	}
+
 	if doRec.Priority != 0 {
 		retv.Prio = fmt.Sprintf("%d", doRec.Priority)
 	}
