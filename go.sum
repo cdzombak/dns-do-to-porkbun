@@ -1,3 +1,5 @@
+github.com/avast/retry-go v3.0.0+incompatible h1:4SOWQ7Qs+oroOTQOYnAHqelpCO0biHSxpiH9JdtuBj0=
+github.com/avast/retry-go v3.0.0+incompatible/go.mod h1:XtSnn+n/sHqQIpZ10K1qAevBhOOCWBLXXy3hyiqqBrY=
 github.com/cdzombak/exitcode_go v0.0.1 h1:9efZXd2nF7RtUV67lnfR1WaubnlDh+Io0wVG4hGX2p4=
 github.com/cdzombak/exitcode_go v0.0.1/go.mod h1:VvYt055HSseEAPgdTHVevUdR1xoBp1tWvIAflepES+U=
 github.com/digitalocean/godo v1.134.0 h1:dT7aQR9jxNOQEZwzP+tAYcxlj5szFZScC33+PAYGQVM=

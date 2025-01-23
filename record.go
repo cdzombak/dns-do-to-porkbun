@@ -53,3 +53,26 @@ func canCreatePorkbunRecordOfType(t string) bool {
 		return false
 	}
 }
+
+func pbRecordEqual(a, b porkbun.Record) (bool, bool) {
+	if a.Name != b.Name {
+		return false, false
+	}
+	if a.Type != b.Type {
+		return false, false
+	}
+	if a.Content != b.Content {
+		return false, false
+	}
+	if a.Prio != b.Prio {
+		if (a.Prio == "" && b.Prio == "0") || (a.Prio == "0" && b.Prio == "") {
+			// ok
+		} else {
+			return true, false
+		}
+	}
+	if a.TTL != b.TTL {
+		return true, false
+	}
+	return true, true
+}

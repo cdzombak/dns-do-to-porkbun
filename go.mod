@@ -3,6 +3,7 @@ module dns-do-to-porkbun
 go 1.23
 
 require (
+	github.com/avast/retry-go v3.0.0+incompatible // indirect
 	github.com/cdzombak/exitcode_go v0.0.1 // indirect
 	github.com/digitalocean/godo v1.134.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
